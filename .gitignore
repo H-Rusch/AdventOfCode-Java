@@ -159,3 +159,5 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+.idea/
+**/resources/inputs/*
