@@ -27,6 +27,13 @@
             <version>5.9.2</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
