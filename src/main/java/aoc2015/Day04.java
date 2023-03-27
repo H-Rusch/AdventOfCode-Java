@@ -22,14 +22,7 @@ class Day04 extends Day {
     public String part1(String input) {
         input = input.strip();
 
-        int number = 1;
-        while (true) {
-            if (testHash(input, number, "00000")) {
-                break;
-            }
-
-            number++;
-        }
+        int number = findLowestNumber(input, "00000");
 
         return String.valueOf(number);
     }
@@ -38,16 +31,22 @@ class Day04 extends Day {
     public String part2(String input) {
         input = input.strip();
 
+        int number = findLowestNumber(input, "000000");
+
+        return String.valueOf(number);
+    }
+
+    private int findLowestNumber(String input, String searchFor) {
         int number = 1;
         while (true) {
-            if (testHash(input, number, "000000")) {
+            if (testHash(input, number, searchFor)) {
                 break;
             }
 
             number++;
         }
 
-        return String.valueOf(number);
+        return number;
     }
 
     private boolean testHash(String input, int number, String start) {
