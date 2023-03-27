@@ -43,6 +43,6 @@ public abstract class AbstractDay {
 
     private void printResult(int part, String result, Duration duration) {
         System.out.println("part " + part + ": " + result);
-        System.out.println(DynamicDuration.formatDuration(duration));
+        System.out.println(DynamicDuration.formatDuration(duration) + "\n");
     }
 }

@@ -1,27 +1,44 @@
 package aoc2015;
 
-import util.days.AbstractDay;
-
-import java.util.Random;
-
 public class Day01 extends Day {
 
-    public Day01() {
+    Day01() {
         super(1);
     }
 
     @Override
     public String part1(String input) {
-        int res = 0;
-        Random rand = new Random();
-        for (int i = 0; i < 100000000; i++) {
-            res += rand.nextInt(900000);
+        int floor = 0;
+
+        for (char c : input.toCharArray()) {
+            if (c == '(') {
+                floor += 1;
+            } else {
+                floor -= 1;
+            }
         }
-        return String.valueOf(res);
+
+        return String.valueOf(floor);
     }
 
     @Override
     public String part2(String input) {
+        int floor = 0;
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+
+            if (c == '(') {
+                floor += 1;
+            } else {
+                floor -= 1;
+            }
+
+            if (floor == -1) {
+                return String.valueOf(i + 1);
+            }
+        }
+
         return "";
     }
 
