@@ -97,7 +97,4 @@ public class InputFetcher {
         }
     }
 
-    public static void main(String[] args) throws UnsuccessfulDownloadException, IOException, InterruptedException {
-        fetchInput(2015, 1);
-    }
 }
