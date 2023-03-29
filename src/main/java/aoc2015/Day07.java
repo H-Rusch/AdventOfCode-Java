@@ -6,12 +6,12 @@ import java.util.Map;
 
 class Day07 extends Day {
 
-    private final Map<String, Wire> wires;
+    private final Map<String, Node> nodes;
     private final static String numberPattern = "\\d+";
 
     Day07() {
         super(7);
-        wires = new HashMap<>();
+        nodes = new HashMap<>();
     }
 
     @Override
@@ -24,12 +24,10 @@ class Day07 extends Day {
     @Override
     public String part2(String input) {
         buildTree(input);
-
         int result = calculateValueForNode("a");
 
         buildTree(input);
-        wires.put("b", new Value(result));
-
+        nodes.put("b", new Node(new Identity(result)));
 
         return String.valueOf(calculateValueForNode("a"));
     }
@@ -41,155 +39,163 @@ class Day07 extends Day {
     private void createWire(String line) {
         String[] parts = line.split(" ");
 
-        Wire wire;
+        Node node = new Node();
+        Operation op;
         if (parts.length == 3) { // value/ forwarder
             if (parts[0].matches(numberPattern)) {
-                wire = new Value(Integer.parseInt(parts[0]));
+                op = new Identity(Integer.parseInt(parts[0]));
             } else {
-                wire = new Forwarder(parts[0]);
+                op = new Forward(parts[0]);
             }
         } else if (parts.length == 4) { // negation
-            wire = new NotGate(parts[1]);
+            op = new Not(parts[1]);
         } else { // and / or / shifts
-            wire = switch (parts[1]) {
-                case "AND" -> new AndGate(parts[0], parts[2]);
-                case "OR" -> new OrGate(parts[0], parts[2]);
-                case "RSHIFT" -> new RightShiftGate(parts[0], Integer.parseInt(parts[2]));
-                case "LSHIFT" -> new LeftShiftGate(parts[0], Integer.parseInt(parts[2]));
+            op = switch (parts[1]) {
+                case "AND" -> new And(parts[0], parts[2]);
+                case "OR" -> new Or(parts[0], parts[2]);
+                case "RSHIFT" -> new RightShift(parts[0], Integer.parseInt(parts[2]));
+                case "LSHIFT" -> new LeftShift(parts[0], Integer.parseInt(parts[2]));
                 default -> null;
             };
         }
+        node.setOperation(op);
 
-        wires.put(parts[parts.length - 1], wire);
+        nodes.put(parts[parts.length - 1], node);
     }
 
     protected int calculateValueForNode(String key) {
-        return wires.get(key).calculate();
+        return nodes.get(key).calculate();
     }
 
-    /** Classes representing the different operations possible. */
-    abstract class Wire {
+    static class Node {
         Integer cached = null;
+        Operation operation;
 
-        int calculateAndCache() {
-            if (cached != null) {
-                return cached;
-            }
-
-            int result = calculate();
-            cached = result;
-
-            return result;
+        public Node() {
         }
 
-        abstract int calculate();
+        public Node(Operation operation) {
+            this.operation = operation;
+        }
+
+        public void setOperation(Operation operation) {
+            this.operation = operation;
+        }
+
+        int calculate() {
+            if (cached == null) {
+                cached = operation.compute();
+            }
+            return cached;
+        }
     }
 
-    class Value extends Wire {
+    interface Operation {
+        int compute();
+    }
+
+    static class Identity implements Operation {
         private final int value;
 
-        public Value(int value) {
+        public Identity(int value) {
             this.value = value;
         }
 
         @Override
-        public int calculate() {
+        public int compute() {
             return value;
         }
     }
 
-    class Forwarder extends Wire {
+    class Forward implements Operation {
         private final String prev;
 
-        public Forwarder(String prev) {
+        public Forward(String prev) {
             this.prev = prev;
         }
 
         @Override
-        public int calculate() {
-            return wires.get(prev).calculateAndCache();
+        public int compute() {
+            return nodes.get(prev).calculate();
         }
     }
 
-    class AndGate extends Wire {
+    class And implements Operation {
         private final String prev1;
         private final String prev2;
 
-        public AndGate(String prev1, String prev2) {
+        public And(String prev1, String prev2) {
             this.prev1 = prev1;
             this.prev2 = prev2;
         }
 
         @Override
-        public int calculate() {
-            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : wires.get(prev1).calculateAndCache();
-            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : wires.get(prev2).calculateAndCache();
+        public int compute() {
+            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
+            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
 
             return val1 & val2;
         }
     }
 
-    class OrGate extends Wire {
+    class Or implements Operation {
         private final String prev1;
         private final String prev2;
 
-        public OrGate(String prev1, String prev2) {
+        public Or(String prev1, String prev2) {
             this.prev1 = prev1;
             this.prev2 = prev2;
         }
 
         @Override
-        public int calculate() {
-            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : wires.get(prev1).calculateAndCache();
-            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : wires.get(prev2).calculateAndCache();
+        public int compute() {
+            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
+            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
 
             return val1 | val2;
         }
     }
 
-    class NotGate extends Wire {
+    class Not implements Operation {
         private final String prev;
 
-        public NotGate(String prev) {
+        public Not(String prev) {
             this.prev = prev;
         }
 
         @Override
-        public int calculate() {
-            return ~wires.get(prev).calculateAndCache() & 0xffff;
+        public int compute() {
+            return ~nodes.get(prev).calculate() & 0xffff;
         }
     }
 
-    class RightShiftGate extends Wire {
+    class RightShift implements Operation {
         private final String prev;
         private final int amount;
 
-        public RightShiftGate(String prev, int amount) {
+        public RightShift(String prev, int amount) {
             this.prev = prev;
             this.amount = amount;
         }
 
         @Override
-        public int calculate() {
-            return wires.get(prev).calculateAndCache() >> amount;
+        public int compute() {
+            return nodes.get(prev).calculate() >> amount;
         }
     }
 
-    class LeftShiftGate extends Wire {
+    class LeftShift implements Operation {
         private final String prev;
         private final int amount;
 
-        public LeftShiftGate(String prev, int amount) {
+        public LeftShift(String prev, int amount) {
             this.prev = prev;
             this.amount = amount;
         }
 
         @Override
-        public int calculate() {
-            int result = wires.get(prev).calculateAndCache() << amount;
-            cached = result;
-
-            return result;
+        public int compute() {
+            return nodes.get(prev).calculate() << amount;
         }
     }
 
