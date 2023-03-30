@@ -97,4 +97,15 @@ public class InputFetcher {
         }
     }
 
+
+    public static String loadExample(int year, int day) {
+        String filename = getFilename(day);
+        Path file = Paths.get("src/main/resources/examples/" + year + "/" + filename);
+
+        try {
+            return Files.readString(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

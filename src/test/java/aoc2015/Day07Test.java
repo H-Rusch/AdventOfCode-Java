@@ -1,30 +1,16 @@
 package aoc2015;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import util.days.InputFetcher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day07Test {
 
-    private String loadExampleInput() {
-        Path file = Paths.get("src/main/resources/examples/2015/day07.txt");
-
-        try {
-            return Files.readString(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Test
-    void part1Test() {
+    void buildTreeTest() {
         var day = new Day07();
-        String exampleInput = loadExampleInput();
+        String exampleInput = InputFetcher.loadExample(2015, 7);
 
         day.buildTree(exampleInput);
 
