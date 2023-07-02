@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 
 public class InputFetcher {
 
+    private InputFetcher() {}
+
     private static final Path INPUT_PATH = Paths.get("src/main/resources/inputs/");
 
     public static String fetchInput(int year, int day) throws UnsuccessfulDownloadException, IOException, InterruptedException {

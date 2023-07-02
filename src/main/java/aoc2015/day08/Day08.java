@@ -1,6 +1,8 @@
-package aoc2015;
+package aoc2015.day08;
 
-public class Day08 extends Day {
+import aoc2015.Day2015;
+
+class Day08 extends Day2015 {
     public Day08() {
         super(8);
     }

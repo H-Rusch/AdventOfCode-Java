@@ -1,11 +1,13 @@
-package aoc2015;
+package aoc2015.day05;
+
+import aoc2015.Day2015;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-class Day05 extends Day {
+class Day05 extends Day2015 {
 
     private final Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
 

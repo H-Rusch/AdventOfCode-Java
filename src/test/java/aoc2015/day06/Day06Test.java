@@ -1,4 +1,4 @@
-package aoc2015;
+package aoc2015.day06;
 
 import org.junit.jupiter.api.Test;
 

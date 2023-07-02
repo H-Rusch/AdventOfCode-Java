@@ -1,11 +1,12 @@
-package aoc2015;
+package aoc2015.day04;
 
+import aoc2015.Day2015;
 import jakarta.xml.bind.DatatypeConverter;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-class Day04 extends Day {
+class Day04 extends Day2015 {
 
     private final MessageDigest md;
 

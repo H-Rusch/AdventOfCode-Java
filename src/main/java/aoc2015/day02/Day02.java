@@ -1,8 +1,10 @@
-package aoc2015;
+package aoc2015.day02;
+
+import aoc2015.Day2015;
 
 import java.util.Arrays;
 
-public class Day02 extends Day {
+public class Day02 extends Day2015 {
 
     Day02() {
         super(2);

@@ -1,10 +1,12 @@
-package aoc2015;
+package aoc2015.day06;
+
+import aoc2015.Day2015;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Day06 extends Day {
+class Day06 extends Day2015 {
 
     private static final int SIZE = 1000;
     // for part 1

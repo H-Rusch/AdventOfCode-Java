@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DynamicDuration {
 
+    private DynamicDuration() {}
+
     public static String formatDuration(Duration duration) {
         if (duration.getSeconds() >= 1) {
             return duration.getSeconds() + "." + TimeUnit.MILLISECONDS.convert(Duration.ofNanos(duration.getNano())) + "s";

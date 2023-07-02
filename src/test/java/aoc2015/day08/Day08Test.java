@@ -1,4 +1,4 @@
-package aoc2015;
+package aoc2015.day08;
 
 import org.junit.jupiter.api.Test;
 import util.days.InputFetcher;

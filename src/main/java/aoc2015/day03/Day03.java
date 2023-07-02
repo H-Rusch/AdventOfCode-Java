@@ -1,12 +1,13 @@
-package aoc2015;
+package aoc2015.day03;
 
+import aoc2015.Day2015;
 import util.grid.Direction;
 import util.grid.Point;
 
 import java.util.HashSet;
 import java.util.Set;
 
-class Day03 extends Day {
+class Day03 extends Day2015 {
 
     Day03() {
         super(3);

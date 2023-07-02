@@ -1,13 +1,15 @@
-package aoc2015;
+package aoc2015.day07;
 
+
+import aoc2015.Day2015;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class Day07 extends Day {
+class Day07 extends Day2015 {
 
     private final Map<String, Node> nodes;
-    private static final String numberPattern = "\\d+";
+    private static final String NUMBER_PATTERN = "\\d+";
 
     Day07() {
         super(7);
@@ -42,7 +44,7 @@ class Day07 extends Day {
         Node node = new Node();
         Operation op;
         if (parts.length == 3) { // value/ forwarder
-            if (parts[0].matches(numberPattern)) {
+            if (parts[0].matches(NUMBER_PATTERN)) {
                 op = new Identity(Integer.parseInt(parts[0]));
             } else {
                 op = new Forward(parts[0]);
@@ -131,8 +133,8 @@ class Day07 extends Day {
 
         @Override
         public int compute() {
-            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
-            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
+            int val1 = prev1.matches(NUMBER_PATTERN) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
+            int val2 = prev2.matches(NUMBER_PATTERN) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
 
             return val1 & val2;
         }
@@ -149,8 +151,8 @@ class Day07 extends Day {
 
         @Override
         public int compute() {
-            int val1 = prev1.matches(numberPattern) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
-            int val2 = prev2.matches(numberPattern) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
+            int val1 = prev1.matches(NUMBER_PATTERN) ? Integer.parseInt(prev1) : nodes.get(prev1).calculate();
+            int val2 = prev2.matches(NUMBER_PATTERN) ? Integer.parseInt(prev2) : nodes.get(prev2).calculate();
 
             return val1 | val2;
         }

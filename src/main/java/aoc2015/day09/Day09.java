@@ -1,8 +1,10 @@
-package aoc2015;
+package aoc2015.day09;
+
+import aoc2015.Day2015;
 
 import java.util.*;
 
-public class Day09 extends Day {
+class Day09 extends Day2015 {
 
     private Map<String, Map<String, Integer>> connections;
     private Set<String> locations;
