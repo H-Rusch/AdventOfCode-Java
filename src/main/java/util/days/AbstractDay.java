@@ -14,9 +14,9 @@ public abstract class AbstractDay {
         this.day = day;
     }
 
-    public abstract String part1(String input);
+    public abstract Object part1(String input);
 
-    public abstract String part2(String input);
+    public abstract Object part2(String input);
 
     private String loadInput() {
         try {
@@ -31,7 +31,7 @@ public abstract class AbstractDay {
         String input = this.loadInput();
 
         Instant start = Instant.now();
-        String result = part1(input);
+        var result = part1(input);
         Instant stop = Instant.now();
         printResult(1, result, Duration.between(start, stop));
 
@@ -41,7 +41,7 @@ public abstract class AbstractDay {
         printResult(2, result, Duration.between(start, stop));
     }
 
-    private void printResult(int part, String result, Duration duration) {
+    private void printResult(int part, Object result, Duration duration) {
         System.out.println("part " + part + ": " + result);
         System.out.println(DynamicDuration.formatDuration(duration) + "\n");
     }

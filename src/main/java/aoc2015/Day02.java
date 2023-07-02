@@ -9,8 +9,8 @@ public class Day02 extends Day {
     }
 
     @Override
-    public String part1(String input) {
-        int sum = input
+    public Integer part1(String input) {
+        return input
                 .lines()
                 .mapToInt(line -> {
                     int[] dims = Arrays.stream(line.split("x")).mapToInt(Integer::valueOf).toArray();
@@ -19,13 +19,11 @@ public class Day02 extends Day {
 
                     return 2 * Arrays.stream(sides).sum() + sides[0];
                 }).sum();
-
-        return String.valueOf(sum);
     }
 
     @Override
-    public String part2(String input) {
-        int sum = input
+    public Integer part2(String input) {
+        return input
                 .lines()
                 .mapToInt(line -> {
                     int[] dims = Arrays.stream(line.split("x")).mapToInt(Integer::valueOf).toArray();
@@ -33,8 +31,6 @@ public class Day02 extends Day {
 
                     return 2 * (dims[0] + dims[1]) + Arrays.stream(dims).reduce(1, (v1, v2) -> v1 * v2);
                 }).sum();
-
-        return String.valueOf(sum);
     }
 
     public static void main(String[] args) {

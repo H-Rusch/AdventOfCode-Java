@@ -13,7 +13,7 @@ class Day03 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         Set<Point> visited = new HashSet<>();
 
         Point pos = new Point(0, 0);
@@ -23,11 +23,11 @@ class Day03 extends Day {
             visited.add(pos);
         }
 
-        return String.valueOf(visited.size());
+        return visited.size();
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         Set<Point> visited = new HashSet<>();
 
         Point santa = new Point(0, 0);
@@ -45,7 +45,7 @@ class Day03 extends Day {
             }
         }
 
-        return String.valueOf(visited.size());
+        return visited.size();
     }
 
     public static void main(String[] args) {

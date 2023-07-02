@@ -7,7 +7,7 @@ import java.util.Map;
 class Day07 extends Day {
 
     private final Map<String, Node> nodes;
-    private final static String numberPattern = "\\d+";
+    private static final String numberPattern = "\\d+";
 
     Day07() {
         super(7);
@@ -15,21 +15,21 @@ class Day07 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         buildTree(input);
 
-        return String.valueOf(calculateValueForNode("a"));
+        return calculateValueForNode("a");
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         buildTree(input);
         int result = calculateValueForNode("a");
 
         buildTree(input);
         nodes.put("b", new Node(new Identity(result)));
 
-        return String.valueOf(calculateValueForNode("a"));
+        return calculateValueForNode("a");
     }
 
     protected void buildTree(String input) {

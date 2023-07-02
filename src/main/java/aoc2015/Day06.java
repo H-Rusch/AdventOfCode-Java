@@ -6,11 +6,11 @@ import java.util.regex.Pattern;
 
 class Day06 extends Day {
 
-    private final int size = 1000;
+    private static final int SIZE = 1000;
     // for part 1
-    private boolean[][] grid = new boolean[size][size];
+    private final boolean[][] grid = new boolean[SIZE][SIZE];
     // for part 2
-    private int[][] lights = new int[size][size];
+    private final int[][] lights = new int[SIZE][SIZE];
 
     private final Pattern pattern = Pattern.compile("^(turn on|turn off|toggle) (\\d+),(\\d+) through (\\d+),(\\d+)$");
 
@@ -19,17 +19,17 @@ class Day06 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         input.lines().forEach(line -> executeCommand(line, true));
 
-        return String.valueOf(countLightsOn());
+        return countLightsOn();
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         input.lines().forEach(line -> executeCommand(line, false));
 
-        return String.valueOf(calculateTotalLights());
+        return calculateTotalLights();
     }
 
     private int countLightsOn() {

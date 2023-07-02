@@ -7,7 +7,7 @@ public class Day01 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         int floor = 0;
 
         for (char c : input.toCharArray()) {
@@ -18,11 +18,11 @@ public class Day01 extends Day {
             }
         }
 
-        return String.valueOf(floor);
+        return floor;
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         int floor = 0;
 
         for (int i = 0; i < input.length(); i++) {
@@ -35,11 +35,11 @@ public class Day01 extends Day {
             }
 
             if (floor == -1) {
-                return String.valueOf(i + 1);
+                return i + 1;
             }
         }
 
-        return "";
+        return -1;
     }
 
     public static void main(String[] args) {

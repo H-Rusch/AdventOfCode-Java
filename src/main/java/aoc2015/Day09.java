@@ -12,20 +12,20 @@ public class Day09 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         buildMap(input);
 
-        return String.valueOf(findCost(true));
+        return findCost(true);
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         buildMap(input);
 
-        return String.valueOf(findCost(false));
+        return findCost(false);
     }
 
-    private int findCost(boolean shortest) {
+    private Integer findCost(boolean shortest) {
         int result = shortest ? Integer.MAX_VALUE : Integer.MIN_VALUE;
 
         Queue<State> queue = new ArrayDeque<>();

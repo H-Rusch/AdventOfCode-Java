@@ -25,17 +25,13 @@ class Day05 extends Day {
 
 
     @Override
-    public String part1(String input) {
-        long count = input.lines().filter(this::isNice).count();
-
-        return String.valueOf(count);
+    public Long part1(String input) {
+        return input.lines().filter(this::isNice).count();
     }
 
     @Override
-    public String part2(String input) {
-        long count = input.lines().filter(this::isReallyNice).count();
-
-        return String.valueOf(count);
+    public Long part2(String input) {
+        return input.lines().filter(this::isReallyNice).count();
     }
 
     /**

@@ -19,30 +19,22 @@ class Day04 extends Day {
     }
 
     @Override
-    public String part1(String input) {
+    public Integer part1(String input) {
         input = input.strip();
 
-        int number = findLowestNumber(input, "00000");
-
-        return String.valueOf(number);
+        return findLowestNumber(input, "00000");
     }
 
     @Override
-    public String part2(String input) {
+    public Integer part2(String input) {
         input = input.strip();
 
-        int number = findLowestNumber(input, "000000");
-
-        return String.valueOf(number);
+        return findLowestNumber(input, "000000");
     }
 
     private int findLowestNumber(String input, String searchFor) {
         int number = 1;
-        while (true) {
-            if (testHash(input, number, searchFor)) {
-                break;
-            }
-
+        while (!testHash(input, number, searchFor)) {
             number++;
         }
 

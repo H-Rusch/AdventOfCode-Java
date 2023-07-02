@@ -6,21 +6,17 @@ public class Day08 extends Day {
     }
 
     @Override
-    public String part1(String input) {
-        int result = input.lines()
+    public Integer part1(String input) {
+        return input.lines()
                 .mapToInt(line -> codeChars(line) - stringChars(line))
                 .sum();
-
-        return String.valueOf(result);
     }
 
     @Override
-    public String part2(String input) {
-        int result = input.lines()
+    public Integer part2(String input) {
+        return input.lines()
                 .mapToInt(line -> encodedLength(line) - codeChars(line))
                 .sum();
-
-        return String.valueOf(result);
     }
 
     public int codeChars(String str) {

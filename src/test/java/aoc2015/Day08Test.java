@@ -3,7 +3,7 @@ package aoc2015;
 import org.junit.jupiter.api.Test;
 import util.days.InputFetcher;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day08Test {
 
@@ -44,7 +44,7 @@ class Day08Test {
         var day = new Day08();
         String input = InputFetcher.loadExample(2015, 8);
 
-        assertEquals("12", day.part1(input));
+        assertEquals(12, day.part1(input));
     }
 
     @Test
@@ -52,6 +52,6 @@ class Day08Test {
         var day = new Day08();
         String input = InputFetcher.loadExample(2015, 8);
 
-        assertEquals("19", day.part2(input));
+        assertEquals(19, day.part2(input));
     }
 }
