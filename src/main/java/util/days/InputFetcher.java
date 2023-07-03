@@ -26,7 +26,7 @@ public class InputFetcher {
             return input;
         }
 
-        return loadInputFromFile(year, day);
+        return loadInputFromFile(year, day).trim();
     }
 
     private static String loadInputFromFile(int year, int day) throws IOException {
