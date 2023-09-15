@@ -13,11 +13,11 @@ class IngredientParserTest {
 
         Ingredient parsed = IngredientParser.parseString(toParse);
 
-        assertEquals(expected.getName(), parsed.getName());
-        assertEquals(expected.getCapacity(), parsed.getCapacity());
-        assertEquals(expected.getDurability(), parsed.getDurability());
-        assertEquals(expected.getFlavor(), parsed.getFlavor());
-        assertEquals(expected.getTexture(), parsed.getTexture());
-        assertEquals(expected.getCalories(), parsed.getCalories());
+        assertEquals(expected.name(), parsed.name());
+        assertEquals(expected.capacity(), parsed.capacity());
+        assertEquals(expected.durability(), parsed.durability());
+        assertEquals(expected.flavor(), parsed.flavor());
+        assertEquals(expected.texture(), parsed.texture());
+        assertEquals(expected.calories(), parsed.calories());
     }
 }
