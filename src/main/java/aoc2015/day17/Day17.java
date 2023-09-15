@@ -23,7 +23,12 @@ public class Day17 extends Day2015 {
 
     @Override
     public Object part2(String input) {
-        return null;
+        var containers = parseInput(input);
+        var combinationCounter = new CombinationCounter(LIMIT, containers);
+
+        combinationCounter.generateCombinations();
+
+        return combinationCounter.differentWaysWithMinContainers();
     }
 
     public static void main(String[] args) {
