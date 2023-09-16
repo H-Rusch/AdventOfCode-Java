@@ -4,6 +4,7 @@ import util.grid.Bounds;
 import util.grid.Point;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LightGrid {
@@ -11,8 +12,10 @@ public class LightGrid {
     private Bounds bounds;
     private Set<Point> litPoints;
     private Set<Point> nextLitPoints;
+    private final boolean edgesAlwaysOn;
 
-    public LightGrid(String input) {
+    public LightGrid(String input, boolean edgesAlwaysOn) {
+        this.edgesAlwaysOn = edgesAlwaysOn;
         this.litPoints = new HashSet<>();
         parseInputToLitPoints(input);
     }
@@ -29,8 +32,8 @@ public class LightGrid {
 
     private void simulation() {
         this.nextLitPoints = new HashSet<>();
-        for (int y = bounds.minY(); y < bounds.maxY(); y++) {
-            for (int x = bounds.minX(); x < bounds.maxX(); x++) {
+        for (int y = bounds.minY(); y <= bounds.maxY(); y++) {
+            for (int x = bounds.minX(); x <= bounds.maxX(); x++) {
                 var point = new Point(x, y);
                 var adjacentLit = countAdjacentLitLights(point);
                 transformPoint(point, adjacentLit);
@@ -38,6 +41,7 @@ public class LightGrid {
         }
 
         this.litPoints = nextLitPoints;
+        activateEdges();
     }
 
     private long countAdjacentLitLights(Point point) {
@@ -67,6 +71,21 @@ public class LightGrid {
                 }
             }
         }
-        this.bounds = new Bounds(0, lines.get(0).length(), 0, lines.size());
+        this.bounds = new Bounds(0, lines.get(0).length() - 1, 0, lines.size() - 1);
+
+        activateEdges();
+    }
+
+    private void activateEdges() {
+        if (!edgesAlwaysOn) {
+            return;
+        }
+
+        litPoints.addAll(List.of(
+                new Point(bounds.minX(), bounds.minY()),
+                new Point(bounds.maxX(), bounds.minY()),
+                new Point(bounds.minX(), bounds.maxY()),
+                new Point(bounds.maxX(), bounds.maxY())
+        ));
     }
 }

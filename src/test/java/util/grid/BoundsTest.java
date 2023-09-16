@@ -22,9 +22,9 @@ class BoundsTest {
     private static List<Point> provideInboundPoints() {
         return List.of(
                 new Point(0, 50),
-                new Point(100, 50),
+                new Point(99, 50),
                 new Point(50, 0),
-                new Point(50, 100),
+                new Point(50, 99),
                 new Point(50, 50)
         );
     }

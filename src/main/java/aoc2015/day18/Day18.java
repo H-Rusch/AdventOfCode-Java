@@ -12,7 +12,7 @@ public class Day18 extends Day2015 {
 
     @Override
     public Object part1(String input) {
-        var lightGrid = new LightGrid(input);
+        var lightGrid = new LightGrid(input, false);
 
         lightGrid.simulation(STEPS);
 
@@ -21,7 +21,11 @@ public class Day18 extends Day2015 {
 
     @Override
     public Object part2(String input) {
-        return null;
+        var lightGrid = new LightGrid(input, true);
+
+        lightGrid.simulation(STEPS);
+
+        return lightGrid.countLitLights();
     }
 
     public static void main(String[] args) {
