@@ -4,7 +4,11 @@ public enum Direction {
     UP,
     DOWN,
     LEFT,
-    RIGHT;
+    RIGHT,
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT;
 
     public static Direction fromChar(char c) {
         return switch (c) {
