@@ -13,7 +13,7 @@ public class ItemShop {
     private List<Armor> armors;
     private List<Ring> rings;
 
-    private List<Set<Equipment>> equipmentPossibilities;
+    private List<Set<Equipment>> equipmentSelections;
 
     public ItemShop() {
         initWeapons();
@@ -21,17 +21,16 @@ public class ItemShop {
         initRings();
     }
 
-    public List<Set<Equipment>> calculateAllEquipmentCombinations() {
-        equipmentPossibilities = new ArrayList<>();
+    public List<Set<Equipment>> generateAllEquipmentCombinations() {
+        equipmentSelections = new ArrayList<>();
 
-        generateEquipments();
-        equipmentPossibilities.sort(Comparator.comparingInt(ItemShop::calculateCostForEquipment));
+        generateEquipmentCombinations();
 
-        return equipmentPossibilities;
+        return equipmentSelections;
     }
 
-    private void generateEquipments() {
-        equipmentPossibilities.add(new HashSet<>());
+    private void generateEquipmentCombinations() {
+        equipmentSelections.add(new HashSet<>());
 
         generateWeapons();
         generateArmor();
@@ -39,44 +38,43 @@ public class ItemShop {
     }
 
     private void generateWeapons() {
-        var newEquipmentPossibilities = new ArrayList<Set<Equipment>>();
+        var newEquipmentSelections = new ArrayList<Set<Equipment>>();
 
         for (Weapon weapon : weapons) {
-            newEquipmentPossibilities.add(createNewSelectionWithItem(equipmentPossibilities.get(0), weapon));
+            newEquipmentSelections.add(createNewSelectionWithItem(equipmentSelections.get(0), weapon));
         }
-        equipmentPossibilities = newEquipmentPossibilities;
+        equipmentSelections = newEquipmentSelections;
     }
 
     private void generateArmor() {
-        var newEquipmentPossibilities = new ArrayList<>(equipmentPossibilities);
+        var newEquipmentSelections = new ArrayList<>(equipmentSelections);
 
         for (Armor armor : armors) {
-            for (Set<Equipment> establishedPossibility : equipmentPossibilities) {
-                newEquipmentPossibilities.add(createNewSelectionWithItem(establishedPossibility, armor));
+            for (Set<Equipment> establishedSelection : equipmentSelections) {
+                newEquipmentSelections.add(createNewSelectionWithItem(establishedSelection, armor));
             }
         }
-        equipmentPossibilities = newEquipmentPossibilities;
+        equipmentSelections = newEquipmentSelections;
     }
 
     private void generateRings() {
-        var newEquipmentPossibilities = new ArrayList<>(equipmentPossibilities);
+        var newEquipmentSelections = new ArrayList<>(equipmentSelections);
         var ringsList = rings.stream().toList();
 
-        for (Set<Equipment> establishedPossibility : equipmentPossibilities) {
+        for (Set<Equipment> establishedSelection : equipmentSelections) {
             for (int i = 0; i < ringsList.size(); i++) {
-                var newSelection = createNewSelectionWithItem(establishedPossibility, rings.get(i));
-                newEquipmentPossibilities.add(newSelection);
+                var newSelection = createNewSelectionWithItem(establishedSelection, rings.get(i));
+                newEquipmentSelections.add(newSelection);
                 for (int j = i + 1; j < ringsList.size(); j++) {
-                    newEquipmentPossibilities.add(createNewSelectionWithItem(newSelection, ringsList.get(j)));
+                    newEquipmentSelections.add(createNewSelectionWithItem(newSelection, ringsList.get(j)));
                 }
             }
         }
-
-        equipmentPossibilities = newEquipmentPossibilities;
+        equipmentSelections = newEquipmentSelections;
     }
 
-    private Set<Equipment> createNewSelectionWithItem(Set<Equipment> establishedPossibility, Equipment toAdd) {
-        var newSelection = new HashSet<>(establishedPossibility);
+    private Set<Equipment> createNewSelectionWithItem(Set<Equipment> establishedSelection, Equipment toAdd) {
+        var newSelection = new HashSet<>(establishedSelection);
         newSelection.add(toAdd);
 
         return newSelection;
