@@ -21,12 +21,10 @@ class PointTest {
     void adjacentProducesCorrectValues() {
         var point = new Point(5, 5);
 
-        var adjacent = point.getAdjacent();
-
-        assertTrue(adjacent.anyMatch(p -> p.x() == 6 && p.y() == 5));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 4 && p.y() == 5));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 5 && p.y() == 4));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 5 && p.y() == 6));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 6 && p.y() == 5));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 4 && p.y() == 5));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 5 && p.y() == 4));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 5 && p.y() == 6));
     }
 
     @Test
@@ -43,16 +41,14 @@ class PointTest {
     void allAdjacentProducesCorrectValues() {
         var point = new Point(5, 5);
 
-        var adjacent = point.getAllAdjacent();
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 6 && p.y() == 5));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 4 && p.y() == 5));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 5 && p.y() == 4));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 5 && p.y() == 6));
 
-        assertTrue(adjacent.anyMatch(p -> p.x() == 6 && p.y() == 5));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 4 && p.y() == 5));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 5 && p.y() == 4));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 5 && p.y() == 6));
-
-        assertTrue(adjacent.anyMatch(p -> p.x() == 4 && p.y() == 4));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 6 && p.y() == 4));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 4 && p.y() == 6));
-        assertTrue(adjacent.anyMatch(p -> p.x() == 6 && p.y() == 6));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 4 && p.y() == 4));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 6 && p.y() == 4));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 4 && p.y() == 6));
+        assertTrue(point.getAllAdjacent().anyMatch(p -> p.x() == 6 && p.y() == 6));
     }
 }
