@@ -1,6 +1,6 @@
 package aoc2015.day24;
 
-import util.collections.Combinations;
+import util.collections.CombinationUtil;
 
 import java.util.*;
 
@@ -22,10 +22,9 @@ public class PresentBalancer {
 
     public long findFirstGroupsEntanglement() {
         int comboLength = 1;
+        var combinationUtil = new CombinationUtil<>(allPresents);
         while (!weightGroups.containsKey(balancedWeight)) {
-            for (var combination : Combinations.combinations(allPresents, comboLength)) {
-                addCombinationToMap(combination);
-            }
+            combinationUtil.combinations(comboLength).forEach(this::addCombinationToMap);
             comboLength++;
         }
 

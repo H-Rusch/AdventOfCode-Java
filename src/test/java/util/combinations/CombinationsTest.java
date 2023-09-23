@@ -1,7 +1,7 @@
 package util.combinations;
 
 import org.junit.jupiter.api.Test;
-import util.collections.Combinations;
+import util.collections.CombinationUtil;
 
 import java.util.List;
 
@@ -11,9 +11,10 @@ class CombinationsTest {
 
     @Test
     void createCorrectCombinationsSize() {
-        List<Integer> values = createValueList();
+        var values = createValueList();
+        var combinator = new CombinationUtil<>(values);
 
-        var combinations = Combinations.combinations(values, 2);
+        var combinations = combinator.combinations(2);
 
         assertEquals(6, combinations.size());
     }
