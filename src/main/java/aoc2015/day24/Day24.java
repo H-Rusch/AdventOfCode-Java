@@ -12,14 +12,16 @@ public class Day24 extends Day2015 {
 
     @Override
     public Object part1(String input) {
-        var presentBalancer = new PresentBalancer(parseInput(input));
+        var presentBalancer = new PresentBalancer(parseInput(input), 3);
 
         return presentBalancer.findFirstGroupsEntanglement();
     }
 
     @Override
     public Object part2(String input) {
-        return null;
+        var presentBalancer = new PresentBalancer(parseInput(input), 4);
+
+        return presentBalancer.findFirstGroupsEntanglement();
     }
 
     private List<Integer> parseInput(String input) {

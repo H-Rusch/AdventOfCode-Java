@@ -6,14 +6,15 @@ import java.util.*;
 
 public class PresentBalancer {
 
-    private static final int GROUP_COUNT = 3;
+    private final int groupCount;
 
     private final List<Integer> allPresents;
     private final int balancedWeight;
 
     private final Map<Integer, List<List<Integer>>> weightGroups;
 
-    public PresentBalancer(List<Integer> presents) {
+    public PresentBalancer(List<Integer> presents, int groupCount) {
+        this.groupCount = groupCount;
         this.allPresents = presents;
         this.balancedWeight = calculateBalancedWeight();
         this.weightGroups = new HashMap<>();
@@ -32,7 +33,7 @@ public class PresentBalancer {
     }
 
     private int calculateBalancedWeight() {
-        return sumPresentWeights(allPresents) / GROUP_COUNT;
+        return sumPresentWeights(allPresents) / groupCount;
     }
 
     private int sumPresentWeights(List<Integer> presents) {
