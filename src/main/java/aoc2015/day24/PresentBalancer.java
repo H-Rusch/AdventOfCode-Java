@@ -1,0 +1,66 @@
+package aoc2015.day24;
+
+import util.collections.Combinations;
+
+import java.util.*;
+
+public class PresentBalancer {
+
+    private static final int GROUP_COUNT = 3;
+
+    private final List<Integer> allPresents;
+    private final int balancedWeight;
+
+    private final Map<Integer, List<List<Integer>>> weightGroups;
+
+    public PresentBalancer(List<Integer> presents) {
+        this.allPresents = presents;
+        this.balancedWeight = calculateBalancedWeight();
+        this.weightGroups = new HashMap<>();
+    }
+
+    public long findFirstGroupsEntanglement() {
+        int comboLength = 1;
+        while (!weightGroups.containsKey(balancedWeight)) {
+            for (var combination : Combinations.combinations(allPresents, comboLength)) {
+                addCombinationToMap(combination);
+            }
+            comboLength++;
+        }
+
+        return selectSmallestQuantumEntanglement();
+    }
+
+    private int calculateBalancedWeight() {
+        return sumPresentWeights(allPresents) / GROUP_COUNT;
+    }
+
+    private int sumPresentWeights(List<Integer> presents) {
+        return presents.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    private void addCombinationToMap(List<Integer> combination) {
+        var weight = sumPresentWeights(combination);
+
+        weightGroups.computeIfAbsent(weight, k -> new ArrayList<>());
+
+        weightGroups.get(weight).add(combination);
+    }
+
+    private long selectSmallestQuantumEntanglement() {
+        var smallestSize = weightGroups.get(balancedWeight).stream().mapToInt(List::size).min().orElseThrow();
+
+        return weightGroups.get(balancedWeight).stream()
+                .filter(list -> list.size() == smallestSize)
+                .map(this::calculateQuantumEntanglement)
+                .min(Long::compareTo)
+                .orElseThrow();
+    }
+
+    private long calculateQuantumEntanglement(List<Integer> presents) {
+        return presents.stream()
+                .mapToLong(Long::valueOf)
+                .reduce((i1, i2) -> i1 * i2)
+                .orElseThrow();
+    }
+}
