@@ -162,3 +162,5 @@ buildNumber.properties
 .idea/
 **/resources/inputs/*
 !**/resources/inputs/.gitkeep
+
+**/.DS_Store
