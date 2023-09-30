@@ -5,7 +5,10 @@ import aoc2015.day21.equipment.Equipment;
 import aoc2015.day21.equipment.Ring;
 import aoc2015.day21.equipment.Weapon;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ItemShop {
 

@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class Day19 extends Day2015 {
 
+    private static final String GOAL = "e";
+
     public Day19() {
         super(19);
     }
@@ -18,14 +20,20 @@ public class Day19 extends Day2015 {
         var replacements = parseReplacementDict(input);
         var startingMolecule = parseStartingMolecule(input);
 
-        var moleculeReplacer = new MoleculeReplacer(replacements, startingMolecule);
+        var moleculeReplacer = new MoleculeReplacer(replacements);
 
-        return moleculeReplacer.getAllReplacements().size();
+        return moleculeReplacer.getAllReplacements(startingMolecule).size();
     }
 
     @Override
     public Object part2(String input) {
-        return null;
+        var startingMolecule = parseStartingMolecule(input);
+        var replacements = parseReplacementDict(input);
+        replacements = reverseReplacementDict(replacements);
+
+        var reducer = new MedicineReducer(GOAL, startingMolecule, replacements);
+
+        return reducer.reduceMedicineToGoal();
     }
 
     private Map<String, List<String>> parseReplacementDict(String input) {
@@ -42,6 +50,17 @@ public class Day19 extends Day2015 {
         });
 
         return replacements;
+    }
+
+    private Map<String, List<String>> reverseReplacementDict(Map<String, List<String>> replacements) {
+        Map<String, List<String>> newReplacements = new HashMap<>();
+
+        replacements.forEach((key, values) -> values.forEach(value -> {
+            newReplacements.putIfAbsent(value, new ArrayList<>());
+            newReplacements.get(value).add(key);
+        }));
+
+        return newReplacements;
     }
 
     private String parseStartingMolecule(String input) {

@@ -2,7 +2,10 @@ package aoc2015.day24;
 
 import util.collections.CombinationUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PresentBalancer {
 

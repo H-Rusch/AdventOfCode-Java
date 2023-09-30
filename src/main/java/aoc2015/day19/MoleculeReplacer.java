@@ -5,16 +5,18 @@ import java.util.*;
 public class MoleculeReplacer {
 
     private final Map<String, List<String>> replacementRules;
-    private final String startingMolecule;
+    private String startingMolecule;
 
     private final Set<String> replacements = new HashSet<>();
 
-    public MoleculeReplacer(Map<String, List<String>> replacementRules, String startingMolecule) {
+    public MoleculeReplacer(Map<String, List<String>> replacementRules) {
         this.replacementRules = replacementRules;
-        this.startingMolecule = startingMolecule;
     }
 
-    public Set<String> getAllReplacements() {
+    public Set<String> getAllReplacements(String molecule) {
+        startingMolecule = molecule;
+        replacements.clear();
+
         fillReplacements();
 
         return replacements;
