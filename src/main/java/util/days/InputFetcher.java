@@ -99,8 +99,7 @@ public class InputFetcher {
     }
 
 
-    public static String loadExample(int year, int day) {
-        String filename = getFilename(day);
+    public static String loadExample(int year, String filename) {
         Path file = Paths.get("src/main/resources/examples/" + year + "/" + filename);
 
         try {

@@ -12,7 +12,7 @@ class Day14Test {
     Day14 day = new Day14();
     int expectedOutput = 1120;
     int timeLimit = 1000;
-    String input = InputFetcher.loadExample(2015, 14);
+    String input = InputFetcher.loadExample(2015, "day14.txt");
 
     assertEquals(expectedOutput, day.runPart1(input, timeLimit));
   }
@@ -23,7 +23,7 @@ class Day14Test {
     // I faked this output because I didn't want to handle the case where if two reindeers are at the same distance, they both get a point
     int expectedOutput = 688;
     int timeLimit = 1000;
-    String input = InputFetcher.loadExample(2015, 14);
+    String input = InputFetcher.loadExample(2015, "day14.txt");
 
     assertEquals(expectedOutput, day.runPart2(input, timeLimit));
   }

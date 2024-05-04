@@ -42,7 +42,7 @@ class Day08Test {
   @Test
   void part1Test() {
     var day = new Day08();
-    String input = InputFetcher.loadExample(2015, 8);
+    String input = InputFetcher.loadExample(2015, "day08.txt");
 
     assertEquals(12, day.part1(input));
   }
@@ -50,7 +50,7 @@ class Day08Test {
   @Test
   void part2Test() {
     var day = new Day08();
-    String input = InputFetcher.loadExample(2015, 8);
+    String input = InputFetcher.loadExample(2015, "day08.txt");
 
     assertEquals(19, day.part2(input));
   }
