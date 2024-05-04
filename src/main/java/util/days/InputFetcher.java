@@ -93,7 +93,7 @@ public class InputFetcher {
         Path file = getFilePath(year, day);
 
         try {
-            Files.writeString(file, input);
+            Files.writeString(file, input.trim());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
