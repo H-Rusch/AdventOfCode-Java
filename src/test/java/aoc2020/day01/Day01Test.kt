@@ -1,14 +1,14 @@
 package aoc2020.day01
 
+import aoc.loadExample
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import util.days.InputFetcher
 
 class Day01Test {
 
     @Test
     fun part1_example() {
-        val input = InputFetcher.loadExample(2020, "day01.txt")
+        val input = loadExample(2020, "day01.txt")
         val subject = Day01()
 
         val result = subject.part1(input)
@@ -19,7 +19,7 @@ class Day01Test {
 
     @Test
     fun part2_example() {
-        val input = InputFetcher.loadExample(2020, "day01.txt")
+        val input = loadExample(2020, "day01.txt")
         val subject = Day01()
 
         val result = subject.part2(input)
