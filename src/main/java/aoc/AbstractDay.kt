@@ -1,6 +1,5 @@
 package aoc
 
-import util.days.InputFetcher
 import java.time.Duration
 import java.time.Instant
 
@@ -10,7 +9,7 @@ abstract class AbstractDay(private val year: Int, private val day: Int) {
     abstract fun part2(input: String): Any
 
     fun executeParts() {
-        val input = InputFetcher.fetchInput(year, day)
+        val input = fetchInput(year, day)
         println("$year Day $day:\n")
 
         executePart(1) { part1(input) }

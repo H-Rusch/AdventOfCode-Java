@@ -1,15 +1,15 @@
 package aoc2015.day18;
 
+import static aoc.InputFetcherKt.loadExample;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import util.days.InputFetcher;
 
 class LightGridTest {
 
   @Test
   void part1Example() {
-    String input = InputFetcher.loadExample(2015, "day18.txt");
+    String input = loadExample(2015, "day18.txt");
     var lightGrid = new LightGrid(input, false);
     int steps = 4;
     int expectedResult = 4;
@@ -21,7 +21,7 @@ class LightGridTest {
 
   @Test
   void part2Example() {
-    String input = InputFetcher.loadExample(2015, "day18.txt");
+    String input = loadExample(2015, "day18.txt");
     var lightGrid = new LightGrid(input, true);
     int steps = 5;
     int expectedResult = 17;

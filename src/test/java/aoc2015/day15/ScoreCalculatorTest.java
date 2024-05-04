@@ -1,16 +1,16 @@
 package aoc2015.day15;
 
+import static aoc.InputFetcherKt.loadExample;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import util.days.InputFetcher;
 
 class ScoreCalculatorTest {
 
   @Test
   void testScoreCalculationPart1() {
-    String input = InputFetcher.loadExample(2015, "day15.txt");
+    String input = loadExample(2015, "day15.txt");
     var ingredients = Day15.parseInput(input);
     var amounts = new int[]{44, 56};
     var calculator = new ScoreCalculator(ingredients);
@@ -23,7 +23,7 @@ class ScoreCalculatorTest {
 
   @Test
   void negativePropertyBecomesZero() {
-    String input = InputFetcher.loadExample(2015, "day15.txt");
+    String input = loadExample(2015, "day15.txt");
     var ingredients = Day15.parseInput(input);
     var amounts = new int[]{100, 0};
     var calculator = new ScoreCalculator(ingredients);
@@ -36,7 +36,7 @@ class ScoreCalculatorTest {
 
   @Test
   void trackMaxScoreCorrectly() {
-    String input = InputFetcher.loadExample(2015, "day15.txt");
+    String input = loadExample(2015, "day15.txt");
     var ingredients = Day15.parseInput(input);
     var calculator = new ScoreCalculator(ingredients);
     int expectedMaxScore = 62842880;
