@@ -1,11 +1,10 @@
 package aoc2015.day24;
 
-import util.collections.CombinationUtil;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import util.collections.CombinationUtil;
 
 public class PresentBalancer {
 

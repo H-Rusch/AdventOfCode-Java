@@ -1,10 +1,9 @@
 package aoc2015.day25;
 
-import util.grid.Point;
-import util.math.SimpleMath;
-
 import java.util.ArrayList;
 import java.util.List;
+import util.grid.Point;
+import util.math.SimpleMath;
 
 public class CodeGenerator {
 

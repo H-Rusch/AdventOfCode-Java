@@ -1,7 +1,6 @@
 package aoc2015.day23;
 
 import aoc2015.day23.instructions.Instruction;
-
 import java.util.List;
 import java.util.Optional;
 

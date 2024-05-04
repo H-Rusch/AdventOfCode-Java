@@ -1,9 +1,16 @@
 package util.grid;
 
+import static util.grid.Direction.BOTTOM_LEFT;
+import static util.grid.Direction.BOTTOM_RIGHT;
+import static util.grid.Direction.DOWN;
+import static util.grid.Direction.LEFT;
+import static util.grid.Direction.RIGHT;
+import static util.grid.Direction.TOP_LEFT;
+import static util.grid.Direction.TOP_RIGHT;
+import static util.grid.Direction.UP;
+
 import java.util.Objects;
 import java.util.stream.Stream;
-
-import static util.grid.Direction.*;
 
 public record Point(int x, int y) {
 

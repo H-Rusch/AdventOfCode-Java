@@ -1,9 +1,8 @@
 package aoc2015.day22;
 
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.Objects;
 
 @Getter
 @AllArgsConstructor

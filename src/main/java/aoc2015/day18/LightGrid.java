@@ -1,11 +1,10 @@
 package aoc2015.day18;
 
-import util.grid.Bounds;
-import util.grid.Point;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import util.grid.Bounds;
+import util.grid.Point;
 
 public class LightGrid {
 

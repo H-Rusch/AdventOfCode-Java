@@ -1,9 +1,8 @@
 package aoc2015.day10;
 
-import lombok.Getter;
-
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import lombok.Getter;
 
 public class SequenceTransformer {
 

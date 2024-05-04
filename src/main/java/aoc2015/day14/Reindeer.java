@@ -1,10 +1,9 @@
 package aoc2015.day14;
 
-import lombok.Getter;
-import util.regex.RegexHelper;
-
 import java.util.List;
 import java.util.regex.Pattern;
+import lombok.Getter;
+import util.regex.RegexHelper;
 
 public class Reindeer {
 
