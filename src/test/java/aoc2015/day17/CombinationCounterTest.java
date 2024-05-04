@@ -10,7 +10,7 @@ class CombinationCounterTest {
   @Test
   void part1Example() {
     int limit = 25;
-    String input = InputFetcher.loadExample(2015, 17);
+    String input = InputFetcher.loadExample(2015, "day17.txt");
     var containers = Day17.parseInput(input);
     var combinationCounter = new CombinationCounter(limit, containers);
     int expectedOutput = 4;
@@ -21,7 +21,7 @@ class CombinationCounterTest {
   @Test
   void part2Example() {
     int limit = 25;
-    String input = InputFetcher.loadExample(2015, 17);
+    String input = InputFetcher.loadExample(2015, "day17.txt");
     var containers = Day17.parseInput(input);
     var combinationCounter = new CombinationCounter(limit, containers);
     int expectedOutput = 3;
