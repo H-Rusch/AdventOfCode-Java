@@ -1,10 +1,15 @@
 package aoc2015.day23;
 
-import aoc2015.day23.instructions.*;
-import lombok.Getter;
-
+import aoc2015.day23.instructions.HalfInstruction;
+import aoc2015.day23.instructions.IncrementInstruction;
+import aoc2015.day23.instructions.Instruction;
+import aoc2015.day23.instructions.JumpIfEvenInstruction;
+import aoc2015.day23.instructions.JumpIfOneInstruction;
+import aoc2015.day23.instructions.RelativeJumpInstruction;
+import aoc2015.day23.instructions.TripleInstruction;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class ProgramParser {

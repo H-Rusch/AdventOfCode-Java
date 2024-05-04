@@ -1,10 +1,9 @@
 package aoc2015.day16;
 
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+import lombok.Getter;
 
 @Getter
 public class Sue {

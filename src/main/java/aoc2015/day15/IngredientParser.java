@@ -1,8 +1,7 @@
 package aoc2015.day15;
 
-import util.regex.RegexHelper;
-
 import java.util.regex.Pattern;
+import util.regex.RegexHelper;
 
 public class IngredientParser {
 

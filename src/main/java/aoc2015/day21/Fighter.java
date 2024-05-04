@@ -1,7 +1,6 @@
 package aoc2015.day21;
 
 import aoc2015.day21.equipment.Equipment;
-
 import java.util.Set;
 
 public class Fighter {

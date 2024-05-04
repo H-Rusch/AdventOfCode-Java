@@ -4,7 +4,6 @@ import aoc2015.day21.equipment.Armor;
 import aoc2015.day21.equipment.Equipment;
 import aoc2015.day21.equipment.Ring;
 import aoc2015.day21.equipment.Weapon;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

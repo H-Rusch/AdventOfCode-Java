@@ -1,8 +1,7 @@
 package aoc2015.day15;
 
-import lombok.Getter;
-
 import java.util.Arrays;
+import lombok.Getter;
 
 public class ScoreCalculator {
 

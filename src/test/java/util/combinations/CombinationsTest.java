@@ -1,11 +1,10 @@
 package util.combinations;
 
-import org.junit.jupiter.api.Test;
-import util.collections.CombinationUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import util.collections.CombinationUtil;
 
 class CombinationsTest {
 

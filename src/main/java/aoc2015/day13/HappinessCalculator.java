@@ -1,9 +1,8 @@
 package aoc2015.day13;
 
-import util.collections.Permutations;
-
 import java.util.List;
 import java.util.Map;
+import util.collections.Permutations;
 
 class HappinessCalculator {
 
