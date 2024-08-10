@@ -19,6 +19,7 @@ private val logger: Logger = LoggerFactory.getLogger("InputFetcher")
 
 private val inputsPath: Path = Paths.get("src/main/resources/inputs/")
 private val examplesPath: Path = Paths.get("src/main/resources/examples/")
+private val userAgentHeader: String = "https://github.com/H-Rusch/AdventOfCode-Java contact @ https://github.com/H-Rusch/AdventOfCode-Java/issues/new"
 
 fun fetchInput(year: Int, day: Int): String {
     createInputDirectoryIfNotExists(year)
@@ -82,6 +83,7 @@ private fun performRequest(year: Int, day: Int, sessionToken: String): HttpRespo
     val request = HttpRequest.newBuilder()
         .uri(uri)
         .header("Cookie", "session=$sessionToken")
+        .header("User-Agent", userAgentHeader)
         .GET()
         .build()
     val client = HttpClient.newHttpClient()
