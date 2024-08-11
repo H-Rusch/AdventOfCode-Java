@@ -10,7 +10,7 @@ class Day07Test {
   @Test
   void buildTreeTest() {
     var day = new Day07();
-    String exampleInput = loadExample(2015, "day07.txt");
+    String exampleInput = loadExample(2015, "day07_1.txt");
 
     day.buildTree(exampleInput);
 
