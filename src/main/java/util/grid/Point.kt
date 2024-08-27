@@ -28,4 +28,12 @@ data class Point(val x: Int, val y: Int) {
     fun manhattenDistance(other: Point): Int {
         return abs(x - other.x) + abs(y - other.y)
     }
+
+    operator fun plus(other: Point): Point {
+        return Point(x + other.x, y + other.y)
+    }
+
+    operator fun times(amount: Int): Point {
+        return Point(x * amount, y * amount)
+    }
 }
