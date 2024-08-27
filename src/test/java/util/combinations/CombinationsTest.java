@@ -8,17 +8,13 @@ import util.collections.CombinationUtil;
 
 class CombinationsTest {
 
-    @Test
-    void createCorrectCombinationsSize() {
-        var values = createValueList();
-        var combinator = new CombinationUtil<>(values);
+  @Test
+  void createCorrectCombinationsSize() {
+    var values = List.of(1, 2, 3, 4);
+    var combinator = new CombinationUtil<>(values);
 
-        var combinations = combinator.combinations(2);
+    var combinations = combinator.combinations(2);
 
-        assertEquals(6, combinations.size());
-    }
-
-    private List<Integer> createValueList() {
-        return List.of(1, 2, 3, 4);
-    }
+    assertEquals(6, combinations.size());
+  }
 }

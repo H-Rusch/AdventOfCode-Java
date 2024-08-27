@@ -21,7 +21,8 @@ class Day03 extends AbstractDay2015 {
     Point pos = new Point(0, 0);
     visited.add(pos);
     for (char c : input.toCharArray()) {
-      pos = pos.move(Direction.fromChar(c));
+      Direction direction = Direction.Companion.fromChar(c);
+      pos = pos.move(direction, 1);
       visited.add(pos);
     }
 
@@ -38,12 +39,13 @@ class Day03 extends AbstractDay2015 {
     visited.add(santa);
 
     for (int i = 0; i < input.length(); i++) {
-      char c = input.charAt(i);
+      Direction direction = Direction.Companion.fromChar(input.charAt(i));
+
       if (i % 2 == 0) {
-        santa = santa.move(Direction.fromChar(c));
+        santa = santa.move(direction, 1);
         visited.add(santa);
       } else {
-        robot = robot.move(Direction.fromChar(c));
+        robot = robot.move(direction, 1);
         visited.add(robot);
       }
     }

@@ -1,12 +1,10 @@
 package aoc2015.day23;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
+@Data
 public class Register {
 
-    @Setter
-    private long value;
+  private long value;
 }
