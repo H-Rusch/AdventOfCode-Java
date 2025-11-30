@@ -19,7 +19,8 @@ private val logger: Logger = LoggerFactory.getLogger("InputFetcher")
 
 private val inputsPath: Path = Paths.get("src/main/resources/inputs/")
 private val examplesPath: Path = Paths.get("src/main/resources/examples/")
-private const val userAgentHeader: String = "https://github.com/H-Rusch/AdventOfCode-Java contact @ https://github.com/H-Rusch/AdventOfCode-Java/issues/new"
+private const val userAgentHeader: String =
+    "https://github.com/H-Rusch/AdventOfCode-Java contact @ https://github.com/H-Rusch/AdventOfCode-Java/issues/new"
 
 fun fetchInput(year: Int, day: Int): String {
     createInputDirectoryIfNotExists(year)

@@ -6,12 +6,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public abstract class RegisterAccessingInstruction implements Instruction {
 
-    private Register register;
+  private Register register;
 
-    @Override
-    public void execute() {
-        this.execute(register);
-    }
+  @Override
+  public void execute() {
+    this.execute(register);
+  }
 
-    abstract void execute(Register register);
+  abstract void execute(Register register);
 }

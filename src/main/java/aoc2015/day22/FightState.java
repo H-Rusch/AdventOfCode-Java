@@ -7,150 +7,155 @@ import lombok.Getter;
 
 public class FightState {
 
-    private static final int MIN_DAMAGE = 1;
+  private static final int MIN_DAMAGE = 1;
 
-    private final boolean hardMode;
+  private final boolean hardMode;
 
-    @Getter
-    private int totalManaSpent;
+  @Getter
+  private int totalManaSpent;
 
-    private int playerHealth;
-    private int playerMana;
+  private int playerHealth;
+  private int playerMana;
 
-    private int bossHealth;
-    private final int bossDamage;
+  private int bossHealth;
+  private final int bossDamage;
 
-    private Set<Effect> activeEffects;
+  private Set<Effect> activeEffects;
 
-    public FightState(boolean hardMode, int totalManaSpent, int playerHealth, int playerMana, int bossHealth, int bossDamage, Set<Effect> activeEffects) {
-        this.hardMode = hardMode;
-        this.totalManaSpent = totalManaSpent;
-        this.playerHealth = playerHealth;
-        this.playerMana = playerMana;
-        this.bossHealth = bossHealth;
-        this.bossDamage = bossDamage;
-        this.activeEffects = activeEffects;
+  public FightState(boolean hardMode, int totalManaSpent, int playerHealth, int playerMana,
+      int bossHealth, int bossDamage, Set<Effect> activeEffects) {
+    this.hardMode = hardMode;
+    this.totalManaSpent = totalManaSpent;
+    this.playerHealth = playerHealth;
+    this.playerMana = playerMana;
+    this.bossHealth = bossHealth;
+    this.bossDamage = bossDamage;
+    this.activeEffects = activeEffects;
+  }
+
+  public List<FightState> getNextStates() {
+    List<Spell> castableSpells = SpellSelection.castableSpells(playerMana, activeEffects);
+
+    return castableSpells.stream().map(this::getNextStateForSpell).toList();
+  }
+
+  private FightState getNextStateForSpell(Spell spell) {
+    var fightCopy = this.copy();
+
+    fightCopy.playerTurn(spell);
+
+    if (!fightCopy.fightFinished()) {
+      fightCopy.bossTurn();
     }
 
-    public List<FightState> getNextStates() {
-        List<Spell> castableSpells = SpellSelection.castableSpells(playerMana, activeEffects);
+    return fightCopy;
+  }
 
-        return castableSpells.stream().map(this::getNextStateForSpell).toList();
+  private void playerTurn(Spell spell) {
+    hardModeDamage();
+    if (fightFinished()) {
+      return;
     }
 
-    private FightState getNextStateForSpell(Spell spell) {
-        var fightCopy = this.copy();
+    executeEffects();
 
-        fightCopy.playerTurn(spell);
-
-        if (!fightCopy.fightFinished()) {
-            fightCopy.bossTurn();
-        }
-
-        return fightCopy;
+    if (!bossAlive()) {
+      return;
     }
 
-    private void playerTurn(Spell spell) {
-        hardModeDamage();
-        if (fightFinished())
-            return;
+    castSpell(spell);
+  }
 
-        executeEffects();
+  private void hardModeDamage() {
+    if (!hardMode) {
+      return;
+    }
+    playerHealth--;
+  }
 
-        if (!bossAlive())
-            return;
+  private void executeEffects() {
+    activeEffects.forEach(this::executeEffect);
+    filterActiveEffects();
+  }
 
-        castSpell(spell);
+  private void executeEffect(Effect effect) {
+    var type = effect.getType();
+    switch (type) {
+      case SHIELD -> { /* no op */ }
+      case POISON -> bossHealth -= type.getDamage();
+      case RECHARGE -> playerMana += type.getManaRestoration();
+      default -> throw new IllegalStateException("Effect type not supported " + type);
     }
 
-    private void hardModeDamage() {
-        if (!hardMode) {
-            return;
-        }
-        playerHealth--;
+    effect.tick();
+  }
+
+  private void filterActiveEffects() {
+    activeEffects = activeEffects.stream()
+        .filter(Effect::isActive)
+        .collect(Collectors.toSet());
+  }
+
+  private void castSpell(Spell spell) {
+    var effect = spell.effect();
+    if (effect != null) {
+      activeEffects.add(effect.copy());
     }
 
-    private void executeEffects() {
-        activeEffects.forEach(this::executeEffect);
-        filterActiveEffects();
+    spellCalculation(spell);
+  }
+
+  private void spellCalculation(Spell spell) {
+    bossHealth -= spell.damage();
+    playerHealth += spell.heal();
+
+    playerMana -= spell.cost();
+    totalManaSpent += spell.cost();
+  }
+
+  private void bossTurn() {
+    executeEffects();
+
+    if (!bossAlive()) {
+      return;
     }
 
-    private void executeEffect(Effect effect) {
-        var type = effect.getType();
-        switch (type) {
-            case SHIELD -> { /* no op */ }
-            case POISON -> bossHealth -= type.getDamage();
-            case RECHARGE -> playerMana += type.getManaRestoration();
-            default -> throw new IllegalStateException("Effect type not supported " + type);
-        }
+    damagePlayer();
+  }
 
-        effect.tick();
-    }
+  private void damagePlayer() {
+    playerHealth -= Math.max(MIN_DAMAGE, bossDamage - calculatePlayerArmor());
+  }
 
-    private void filterActiveEffects() {
-        activeEffects = activeEffects.stream()
-                .filter(Effect::isActive)
-                .collect(Collectors.toSet());
-    }
+  private int calculatePlayerArmor() {
+    return activeEffects.stream().mapToInt(e -> e.getType().getArmor()).sum();
+  }
 
-    private void castSpell(Spell spell) {
-        var effect = spell.effect();
-        if (effect != null) {
-            activeEffects.add(effect.copy());
-        }
+  public boolean playerWon() {
+    return playerAlive() && !bossAlive();
+  }
 
-        spellCalculation(spell);
-    }
+  public boolean bossWon() {
+    return !playerAlive() && bossAlive();
+  }
 
-    private void spellCalculation(Spell spell) {
-        bossHealth -= spell.damage();
-        playerHealth += spell.heal();
+  private boolean fightFinished() {
+    return playerWon() || bossWon();
+  }
 
-        playerMana -= spell.cost();
-        totalManaSpent += spell.cost();
-    }
+  private boolean playerAlive() {
+    return playerHealth > 0;
+  }
 
-    private void bossTurn() {
-        executeEffects();
+  private boolean bossAlive() {
+    return bossHealth > 0;
+  }
 
-        if (!bossAlive()) {
-            return;
-        }
+  private FightState copy() {
+    Set<Effect> activeEffectsCopy = activeEffects.stream().map(Effect::copy)
+        .collect(Collectors.toSet());
 
-        damagePlayer();
-    }
-
-    private void damagePlayer() {
-        playerHealth -= Math.max(MIN_DAMAGE, bossDamage - calculatePlayerArmor());
-    }
-
-    private int calculatePlayerArmor() {
-        return activeEffects.stream().mapToInt(e -> e.getType().getArmor()).sum();
-    }
-
-    public boolean playerWon() {
-        return playerAlive() && !bossAlive();
-    }
-
-    public boolean bossWon() {
-        return !playerAlive() && bossAlive();
-    }
-
-    private boolean fightFinished() {
-        return playerWon() || bossWon();
-    }
-
-    private boolean playerAlive() {
-        return playerHealth > 0;
-    }
-
-    private boolean bossAlive() {
-        return bossHealth > 0;
-    }
-
-    private FightState copy() {
-        Set<Effect> activeEffectsCopy = activeEffects.stream().map(Effect::copy).collect(Collectors.toSet());
-
-        return new FightState(hardMode, totalManaSpent, playerHealth, playerMana, bossHealth, bossDamage, activeEffectsCopy);
-    }
+    return new FightState(hardMode, totalManaSpent, playerHealth, playerMana, bossHealth,
+        bossDamage, activeEffectsCopy);
+  }
 }

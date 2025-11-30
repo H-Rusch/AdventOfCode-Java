@@ -7,10 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class RelativeJumpInstruction implements JumpInstruction {
 
-    private int offset;
+  private int offset;
 
-    @Override
-    public void execute() {
-        // no operation
-    }
+  @Override
+  public void execute() {
+    // no operation
+  }
 }

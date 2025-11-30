@@ -11,44 +11,44 @@ import tools.jackson.databind.ObjectMapper;
 
 public class JsonSumNumbers {
 
-    private static final String FILTER = "red";
+  private static final String FILTER = "red";
 
-    @Getter
-    private int sum;
-    private final JsonNode root;
+  @Getter
+  private int sum;
+  private final JsonNode root;
 
-    public JsonSumNumbers(String jsonInput) {
-        this.sum = 0;
-        try {
-            this.root = new ObjectMapper().readTree(jsonInput);
-        } catch (JacksonException e) {
-            throw new RuntimeException(e);
-        }
+  public JsonSumNumbers(String jsonInput) {
+    this.sum = 0;
+    try {
+      this.root = new ObjectMapper().readTree(jsonInput);
+    } catch (JacksonException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public void sumWithoutRed() {
+    sumWithoutRed(root);
+  }
+
+  private void sumWithoutRed(JsonNode node) {
+    if (node == null || testSkipBasedOnProperty(node)) {
+      return;
+    }
+    if (node.isInt()) {
+      sum += node.asInt();
     }
 
-    public void sumWithoutRed() {
-        sumWithoutRed(root);
+    node.iterator().forEachRemaining(this::sumWithoutRed);
+  }
+
+  private boolean testSkipBasedOnProperty(JsonNode node) {
+    if (!node.isObject()) {
+      return false;
     }
+    Stream<JsonNode> nodeStream = StreamSupport.stream(
+        Spliterators.spliteratorUnknownSize(node.iterator(), Spliterator.ORDERED),
+        false);
 
-    private void sumWithoutRed(JsonNode node) {
-        if (node == null || testSkipBasedOnProperty(node)) {
-            return;
-        }
-        if (node.isInt()) {
-            sum += node.asInt();
-        }
-
-        node.iterator().forEachRemaining(this::sumWithoutRed);
-    }
-
-    private boolean testSkipBasedOnProperty(JsonNode node) {
-        if (!node.isObject()) {
-            return false;
-        }
-        Stream<JsonNode> nodeStream = StreamSupport.stream(
-                Spliterators.spliteratorUnknownSize(node.iterator(), Spliterator.ORDERED),
-                false);
-
-        return nodeStream.anyMatch(n -> n.isString() && n.stringValue().equals(FILTER));
-    }
+    return nodeStream.anyMatch(n -> n.isString() && n.stringValue().equals(FILTER));
+  }
 }

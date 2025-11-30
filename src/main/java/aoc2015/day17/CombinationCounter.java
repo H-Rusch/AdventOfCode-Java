@@ -6,50 +6,50 @@ import java.util.Map;
 
 public class CombinationCounter {
 
-    private final int limit;
-    private final List<Integer> containers;
-    // tracks how many combinations there are to reach the limit with <key> number of containers
-    private final Map<Integer, Integer> reachingLimitMap;
+  private final int limit;
+  private final List<Integer> containers;
+  // tracks how many combinations there are to reach the limit with <key> number of containers
+  private final Map<Integer, Integer> reachingLimitMap;
 
-    private int combinationCount = 0;
+  private int combinationCount = 0;
 
-    public CombinationCounter(int limit, List<Integer> containers) {
-        this.limit = limit;
-        this.containers = containers;
-        this.reachingLimitMap = new HashMap<>();
+  public CombinationCounter(int limit, List<Integer> containers) {
+    this.limit = limit;
+    this.containers = containers;
+    this.reachingLimitMap = new HashMap<>();
+  }
+
+  public int generateCombinations() {
+    helper(0, 0, 0);
+
+    return combinationCount;
+  }
+
+  private void helper(int index, int liters, int containerCount) {
+    if (liters == limit) {
+      combinationCount++;
+      incrementContainerCount(containerCount);
+      return;
     }
 
-    public int generateCombinations() {
-        helper(0, 0, 0);
-
-        return combinationCount;
+    for (int i = index; i < containers.size(); i++) {
+      int newLiters = liters + containers.get(i);
+      if (newLiters <= limit) {
+        helper(i + 1, newLiters, containerCount + 1);
+      }
     }
+  }
 
-    private void helper(int index, int liters, int containerCount) {
-        if (liters == limit) {
-            combinationCount++;
-            incrementContainerCount(containerCount);
-            return;
-        }
+  private void incrementContainerCount(int containerCount) {
+    reachingLimitMap.putIfAbsent(containerCount, 0);
+    reachingLimitMap.put(containerCount, reachingLimitMap.get(containerCount) + 1);
+  }
 
-        for (int i = index; i < containers.size(); i++) {
-            int newLiters = liters + containers.get(i);
-            if (newLiters <= limit) {
-                helper(i + 1, newLiters, containerCount + 1);
-            }
-        }
-    }
+  public int differentWaysWithMinContainers() {
+    return reachingLimitMap.get(minContainers());
+  }
 
-    private void incrementContainerCount(int containerCount) {
-        reachingLimitMap.putIfAbsent(containerCount, 0);
-        reachingLimitMap.put(containerCount, reachingLimitMap.get(containerCount) + 1);
-    }
-
-    public int differentWaysWithMinContainers() {
-        return reachingLimitMap.get(minContainers());
-    }
-
-    private int minContainers() {
-        return reachingLimitMap.keySet().stream().min(Integer::compareTo).orElseThrow();
-    }
+  private int minContainers() {
+    return reachingLimitMap.keySet().stream().min(Integer::compareTo).orElseThrow();
+  }
 }

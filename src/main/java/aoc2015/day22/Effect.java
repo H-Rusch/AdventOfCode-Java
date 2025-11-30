@@ -8,31 +8,35 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Effect {
 
-    private EffectType type;
-    private int duration;
+  private EffectType type;
+  private int duration;
 
-    public void tick() {
-        duration--;
-    }
+  public void tick() {
+    duration--;
+  }
 
-    public boolean isActive() {
-        return duration > 0;
-    }
+  public boolean isActive() {
+    return duration > 0;
+  }
 
-    public Effect copy() {
-        return new Effect(type, duration);
-    }
+  public Effect copy() {
+    return new Effect(type, duration);
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Effect effect = (Effect) o;
-        return getType() == effect.getType();
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Effect effect = (Effect) o;
+    return getType() == effect.getType();
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getType());
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(getType());
+  }
 }
