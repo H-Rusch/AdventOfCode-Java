@@ -160,7 +160,7 @@ buildNumber.properties
 .classpath
 
 .idea/
-**/resources/inputs/*
-!**/resources/inputs/.gitkeep
+_inputCache/*
+!_inputCache/.gitkeep
 
 **/.DS_Store
