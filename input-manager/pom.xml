@@ -10,11 +10,9 @@
     <groupId>com.hrusch</groupId>
     <artifactId>AdventOfCode-Java</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>inputs</artifactId>
-  <packaging>jar</packaging>
+  <artifactId>input-manager</artifactId>
 
   <dependencies>
     <!-- Kotlin -->

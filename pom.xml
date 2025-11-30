@@ -12,7 +12,7 @@
 
   <modules>
     <module>util</module>
-    <module>inputs</module>
+    <module>input-manager</module>
     <module>aoc15</module>
     <module>aoc20</module>
   </modules>
@@ -36,7 +36,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>inputs</artifactId>
+        <artifactId>input-manager</artifactId>
         <version>${project.version}</version>
       </dependency>
 

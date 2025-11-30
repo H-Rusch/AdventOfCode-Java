@@ -17,7 +17,7 @@
   <dependencies>
     <dependency>
       <groupId>com.hrusch</groupId>
-      <artifactId>inputs</artifactId>
+      <artifactId>input-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>com.hrusch</groupId>
