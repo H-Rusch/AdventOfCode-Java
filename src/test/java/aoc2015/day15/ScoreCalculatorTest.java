@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 
 class ScoreCalculatorTest {
 
+  static final String FILENAME = "day15.txt";
+
   @Test
   void testScoreCalculationPart1() {
-    String input = loadExample(2015, "day15.txt");
+    String input = loadExample(2015, FILENAME);
     var ingredients = Day15.parseInput(input);
     var amounts = new int[]{44, 56};
     var calculator = new ScoreCalculator(ingredients);
@@ -23,7 +25,7 @@ class ScoreCalculatorTest {
 
   @Test
   void negativePropertyBecomesZero() {
-    String input = loadExample(2015, "day15.txt");
+    String input = loadExample(2015, FILENAME);
     var ingredients = Day15.parseInput(input);
     var amounts = new int[]{100, 0};
     var calculator = new ScoreCalculator(ingredients);
@@ -36,7 +38,7 @@ class ScoreCalculatorTest {
 
   @Test
   void trackMaxScoreCorrectly() {
-    String input = loadExample(2015, "day15.txt");
+    String input = loadExample(2015, FILENAME);
     var ingredients = Day15.parseInput(input);
     var calculator = new ScoreCalculator(ingredients);
     int expectedMaxScore = 62842880;

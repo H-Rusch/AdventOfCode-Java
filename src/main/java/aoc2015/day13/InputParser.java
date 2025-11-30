@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import lombok.experimental.UtilityClass;
 import util.regex.RegexHelper;
 
+@UtilityClass
 class InputParser {
 
     private static final Pattern PATTERN = Pattern

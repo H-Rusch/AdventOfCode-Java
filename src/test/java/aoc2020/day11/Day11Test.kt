@@ -12,13 +12,13 @@ class Day11Test {
     private val input = loadExample(2020, "day11.txt")
 
     @Test
-    fun part1_examples() {
+    fun part1Examples() {
         assertThat(subject.part1(input))
             .isEqualTo(37)
     }
 
     @Test
-    fun part2_examples() {
+    fun part2Examples() {
         assertThat(subject.part2(input))
             .isEqualTo(26)
     }

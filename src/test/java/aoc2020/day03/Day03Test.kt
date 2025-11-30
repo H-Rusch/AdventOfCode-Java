@@ -8,7 +8,7 @@ class Day03Test {
     val input: String = loadExample(2020, "day03.txt")
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         val subject = Day03()
 
         assertThat(subject.part1(input))
@@ -16,7 +16,7 @@ class Day03Test {
     }
 
     @Test
-    fun part2_example() {
+    fun part2Example() {
         val subject = Day03()
 
         assertThat(subject.part2(input))

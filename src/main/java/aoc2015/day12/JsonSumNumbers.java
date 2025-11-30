@@ -49,6 +49,6 @@ public class JsonSumNumbers {
                 Spliterators.spliteratorUnknownSize(node.iterator(), Spliterator.ORDERED),
                 false);
 
-        return nodeStream.anyMatch(n -> n.isTextual() && n.textValue().equals(FILTER));
+        return nodeStream.anyMatch(n -> n.isString() && n.stringValue().equals(FILTER));
     }
 }

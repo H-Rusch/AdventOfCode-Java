@@ -31,10 +31,10 @@ public class Day13 extends AbstractDay2015 {
   private void addYouToMap(Map<String, Map<String, Integer>> potentialHappiness) {
     String you = "You";
     potentialHappiness.put(you, new HashMap<>());
-    for (String name : potentialHappiness.keySet()) {
-      potentialHappiness.get(name).put(you, 0);
-      potentialHappiness.get(you).put(name, 0);
-    }
+    potentialHappiness.forEach((key, value) -> {
+      value.put(you, 0);
+      potentialHappiness.get(you).put(key, 0);
+    });
   }
 
   public static void main(String[] args) {

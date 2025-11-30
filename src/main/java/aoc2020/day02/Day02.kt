@@ -26,7 +26,7 @@ class Day02 : AbstractDay2020(2) {
     ): List<Pair<PasswordRule, String>> {
         return input.lines().map {
             val parts = it.split(": ")
-            val groups = RegexHelper.getGroups(passwordRulePattern.matcher(parts[0]))
+            val groups = RegexHelper.getGroups(passwordRulePattern.matcher(parts[0])).toList()
 
             val passwordRule = factoryFunction.invoke(
                 groups[1].toInt(),

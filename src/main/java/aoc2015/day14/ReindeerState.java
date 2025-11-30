@@ -5,7 +5,7 @@ public abstract class ReindeerState {
     int timeLeftInState;
     Reindeer reindeer;
 
-    public ReindeerState(Reindeer reindeer, int timeLeftInState) {
+    ReindeerState(Reindeer reindeer, int timeLeftInState) {
         this.reindeer = reindeer;
         this.timeLeftInState = timeLeftInState;
     }

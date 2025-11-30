@@ -31,7 +31,7 @@ class Day05Test {
     }
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         assertThat(subject.part1(input))
             .isEqualTo(820)
     }

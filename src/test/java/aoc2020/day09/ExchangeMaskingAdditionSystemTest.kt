@@ -11,7 +11,7 @@ class ExchangeMaskingAdditionSystemTest {
         .map { it.toLong() }
 
     @Test
-    fun findInvalidValue_example() {
+    fun findInvalidValueExample() {
         val size = 5
 
         assertThat(findInvalidValue(values, size))
@@ -20,7 +20,7 @@ class ExchangeMaskingAdditionSystemTest {
 
 
     @Test
-    fun findContiguousSum_example() {
+    fun findContiguousSumExample() {
         assertThat(findContiguousSum(127, values))
             .isEqualTo(62)
     }

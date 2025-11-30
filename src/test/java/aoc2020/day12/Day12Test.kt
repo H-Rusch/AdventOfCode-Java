@@ -11,13 +11,13 @@ class Day12Test {
     val subject = Day12()
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         assertThat(subject.part1(input))
             .isEqualTo(25)
     }
 
     @Test
-    fun part2_example() {
+    fun part2Example() {
         assertThat(subject.part2(input))
             .isEqualTo(286)
     }

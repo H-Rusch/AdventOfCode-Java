@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class Day01Test {
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         val input = loadExample(2020, "day01.txt")
         val subject = Day01()
 
@@ -18,7 +18,7 @@ class Day01Test {
     }
 
     @Test
-    fun part2_example() {
+    fun part2Example() {
         val input = loadExample(2020, "day01.txt")
         val subject = Day01()
 

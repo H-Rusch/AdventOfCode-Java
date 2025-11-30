@@ -17,13 +17,13 @@ class Day08Test {
     }
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         assertThat(subject.part1(input))
             .isEqualTo(5)
     }
 
     @Test
-    fun part2_example() {
+    fun part2Example() {
         assertThat(subject.part2(input))
             .isEqualTo(8)
     }

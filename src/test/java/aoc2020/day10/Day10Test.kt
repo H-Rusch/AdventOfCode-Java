@@ -16,7 +16,7 @@ class Day10Test {
         "day10_1.txt, 35",
         "day10_2.txt, 220"
     )
-    fun part1_examples(filename: String, expectedResult: Int) {
+    fun part1Examples(filename: String, expectedResult: Int) {
         val input = loadExample(year, filename)
 
         assertThat(subject.part1(input))
@@ -28,7 +28,7 @@ class Day10Test {
         "day10_1.txt, 8",
         "day10_2.txt, 19208"
     )
-    fun part2_examples(filename: String, expectedResult: Long) {
+    fun part2Examples(filename: String, expectedResult: Long) {
         val input = loadExample(year, filename)
 
         assertThat(subject.part2(input))

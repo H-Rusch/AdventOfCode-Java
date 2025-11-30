@@ -19,7 +19,7 @@ class Day07Test {
     }
 
     @Test
-    fun part1_example() {
+    fun part1Example() {
         assertThat(subject.part1(input))
             .isEqualTo(4)
     }
@@ -29,7 +29,7 @@ class Day07Test {
         "day07_1.txt, 32",
         "day07_2.txt, 126"
     )
-    fun part2_example(filename: String, expectedResult: Int) {
+    fun part2Example(filename: String, expectedResult: Int) {
         val input = loadExample(2020, filename)
 
         assertThat(subject.part2(input))
