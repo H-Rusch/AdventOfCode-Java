@@ -15,6 +15,7 @@
     <module>input-manager</module>
     <module>aoc15</module>
     <module>aoc20</module>
+    <module>aoc25</module>
   </modules>
 
   <properties>
