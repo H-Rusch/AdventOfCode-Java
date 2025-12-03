@@ -12,6 +12,8 @@ abstract class AbstractDay(private val year: Int, private val day: Int) {
         val input = fetchInput(year, day)
         println("$year Day $day:\n")
 
+        warmUpJvm(input)
+
         executePart(1) { part1(input) }
         executePart(2) { part2(input) }
     }
@@ -28,5 +30,10 @@ abstract class AbstractDay(private val year: Int, private val day: Int) {
         val end = Instant.now()
 
         return Pair(result, Duration.between(start, end))
+    }
+
+    /** Warm up JVM to get more realistic measurements */
+    private fun warmUpJvm(input: String) {
+        part1(input)
     }
 }
