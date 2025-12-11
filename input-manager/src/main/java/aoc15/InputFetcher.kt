@@ -39,7 +39,7 @@ fun fetchInput(year: Int, day: Int): String {
 fun loadExample(filename: String): String {
     val filePath = examplesPath.resolve(filename)
 
-    return Files.readString(filePath)
+    return Files.readString(filePath).trim()
 }
 
 private fun createInputDirectoryIfNotExists(year: Int) {
@@ -98,4 +98,4 @@ private fun saveInputToFile(filePath: Path, input: String) {
     Files.write(filePath, input.trim().toByteArray())
 }
 
-private fun loadInputFromFile(filePath: Path): String = Files.readString(filePath)
+private fun loadInputFromFile(filePath: Path): String = Files.readString(filePath).trim()
