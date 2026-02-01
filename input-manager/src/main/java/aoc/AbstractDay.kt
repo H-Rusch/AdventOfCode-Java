@@ -13,7 +13,7 @@ abstract class AbstractDay(private val year: Int, private val day: Int) {
         val input = fetchInput(year, day)
         println("$year Day $day:\n")
 
-        warmUpJvm(input)
+        //warmUpJvm(input)
 
         executePart(1) { part1(input) }
         executePart(2) { part2(input) }
