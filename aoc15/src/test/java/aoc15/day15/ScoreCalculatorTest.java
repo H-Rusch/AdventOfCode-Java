@@ -1,6 +1,6 @@
 package aoc15.day15;
 
-import static aoc15.InputFetcherKt.loadExample;
+import static aoc.InputFetcherKt.loadExample;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

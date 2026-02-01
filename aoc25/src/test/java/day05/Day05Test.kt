@@ -1,6 +1,6 @@
 package day05
 
-import aoc15.loadExample
+import aoc.loadExample
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

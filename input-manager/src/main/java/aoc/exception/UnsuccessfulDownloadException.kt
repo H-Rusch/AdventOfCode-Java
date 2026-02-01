@@ -1,3 +1,3 @@
-package aoc15.exception
+package aoc.exception
 
 class UnsuccessfulDownloadException(message: String) : RuntimeException(message)

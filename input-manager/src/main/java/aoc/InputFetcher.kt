@@ -1,7 +1,7 @@
-package aoc15
+package aoc
 
-import aoc15.exception.SessionTokenNotFoundException
-import aoc15.exception.UnsuccessfulDownloadException
+import aoc.exception.SessionTokenNotFoundException
+import aoc.exception.UnsuccessfulDownloadException
 import io.github.cdimascio.dotenv.Dotenv
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

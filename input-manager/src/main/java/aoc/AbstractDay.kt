@@ -1,4 +1,4 @@
-package aoc15
+package aoc
 
 import java.time.Duration
 import java.time.Instant
