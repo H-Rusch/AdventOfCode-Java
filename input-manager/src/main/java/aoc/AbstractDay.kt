@@ -1,5 +1,6 @@
 package aoc
 
+import kotlinx.coroutines.*
 import java.time.Duration
 import java.time.Instant
 
@@ -32,8 +33,22 @@ abstract class AbstractDay(private val year: Int, private val day: Int) {
         return Pair(result, Duration.between(start, end))
     }
 
-    /** Warm up JVM to get more realistic measurements */
+    /**
+     *  Warm up JVM to get more realistic measurements.
+     *  Cancel execution after 1 second so the preparation does not take too long.
+     */
     private fun warmUpJvm(input: String) {
-        part1(input)
+        runBlocking {
+            try {
+                withTimeout(1_000) {
+                    coroutineScope {
+                        launch { part1(input) }
+                        launch { part2(input) }
+                    }
+                }
+            } catch (_: TimeoutCancellationException) {
+                // ignored
+            }
+        }
     }
 }
