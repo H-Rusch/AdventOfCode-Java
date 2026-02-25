@@ -6,8 +6,9 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
+
+import kotlin.Pair;
 import lombok.NonNull;
-import util.collections.Pair;
 
 public class Day22 extends AbstractDay2015 {
 
@@ -22,7 +23,7 @@ public class Day22 extends AbstractDay2015 {
   @Override
   public Object part1(@NonNull String input) {
     var pair = parseInput(input);
-    var fight = createNormalFight(pair.one(), pair.two());
+    var fight = createNormalFight(pair.getFirst(), pair.getSecond());
 
     return getMinimumWinningMana(fight);
   }
@@ -31,7 +32,7 @@ public class Day22 extends AbstractDay2015 {
   @Override
   public Object part2(@NonNull String input) {
     var pair = parseInput(input);
-    var fight = createHardFight(pair.one(), pair.two());
+    var fight = createHardFight(pair.getFirst(), pair.getSecond());
 
     return getMinimumWinningMana(fight);
   }
